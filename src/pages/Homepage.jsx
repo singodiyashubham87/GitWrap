@@ -90,7 +90,7 @@ const Homepage = () => {
             />
             <Link to="/stats">
               <FaRegArrowAltCircleRight
-                className="text-[2rem] vsm:text-[2.5rem] gsm:text-[4rem] text-lightBlue cursor-pointer hover:text-[#368186]"
+                className="text-[2rem] vsm:text-[2.5rem] gsm:text-[4rem] text-lightBlue cursor-pointer hover:text-darkBlue"
                 onClick={handleSubmit}
               />
             </Link>

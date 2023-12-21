@@ -6,13 +6,14 @@ export default {
       colors: {
         bgBlack: "#212325",
         lightBlue: "#9CDAF1",
+        darkBlue: "#368186",
         lightRed: "#F4CBB2",
         lightGrey: "#ABABAB",
-        grey: "#2E3136",
+        darkGrey: "#2E3136",
       },
       fontFamily: {
         primary: "Inter",
-        secondary: "Itim",
+        secondary: "Borel"
       },
       screens: {
         xxl: "1751px",
