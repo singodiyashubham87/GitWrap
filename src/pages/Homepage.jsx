@@ -48,7 +48,6 @@ const Homepage = () => {
         hideLoader();
       openModal();
     } else {
-      localStorage.setItem("ghUsername", ghUsername);
       hideLoader();
       navigateTo("/stats");
     }

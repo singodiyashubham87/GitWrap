@@ -75,7 +75,7 @@ const StatsPage = () => {
           <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
             Summary
           </h1>
-          <ul className="statSummary w-[100%] flex flex-col justify-center items-center">
+          <ul className="statSummary w-[100%] flex flex-col gap-[1rem] justify-center items-center">
             <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
               <FaGithub className="text-lightBlue text-[1.5rem] w-[15%]" />
               <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
@@ -138,9 +138,10 @@ const StatsPage = () => {
           </h1>
           <blockquote className="w-[80%] font-secondary text-[2rem] text-lightGrey leading-[3.5rem] relative">
             {`"You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one. `}{" "}
-            <span className="text-white absolute bottom-[0] right-[0] font-semibold">
+            <br />
+            <cite className="text-white text-right block font-semibold">
               -John Lennon
-            </span>
+            </cite>
           </blockquote>
         </div>
 

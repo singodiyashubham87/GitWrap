@@ -1,13 +1,22 @@
 import { octokit } from "./getOctokit";
 
 export default async function validateGithubUsername(ghUsername) {
-  try{
-    await octokit.rest.users.getByUsername({
-        username: ghUsername,
-      });
-      return true;
-  }catch(error){
+  try {
+    const res = await octokit.rest.users.getByUsername({
+      username: ghUsername,
+    });
+    //Storing data to local storage before returning
+    storeDataToLocalStorage(res);
+    return true;
+  } catch (error) {
     console.clear();
     return false;
   }
+}
+
+//Store user data to local storage
+function storeDataToLocalStorage(res) {
+  localStorage.setItem("username", res.data.login);
+  localStorage.setItem("followers", res.data.followers);
+  localStorage.setItem("location", res.data.location);
 }

@@ -1,0 +1,44 @@
+Canvas on login page
+Lazy Loading 
+Search Functionality
+Dependabot
+Dockerise
+CI/CD
+
+Done: 
+
+Separate Card:
+>Username
+>Followers
+>Location
+
+
+>Total Contributions
+>Issues Opened
+>Issues Closed
+>Total Commits
+>Total Pull Requests
+
+Separate Card:
+>Repos Contributed
+>Top Repositories
+
+Separate Card:
+[getActiveDays()]
+>Active Days
+>Most Productive Day + maxContributionCount on that day
+>Max. Streak
+
+Separate Card:
+[getMostUsedLanguage()]
+>Most used languages[Array of 5]
+{Show using piechart by utilising chart.js}
+
+
+restrictedContributionsCount // A count of contributions made by the user that the viewer cannot access.  Only non-zero when the user has chosen to share their private contribution counts.
+totalIssueContributions // How many issues the user opened.
+totalCommitContributions // How many commits were made by the user in this time span.
+totalRepositoryContributions // How many repositories the user created.
+totalPullRequestContributions // How many pull requests the user opened.
+totalPullRequestReviewContributions // How many pull request reviews the user left.
+repositoryContributions // A list of repositories owned by the user that the user created in this time range.
