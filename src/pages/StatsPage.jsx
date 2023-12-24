@@ -5,36 +5,153 @@ import day from "../assets/images/day1.png";
 import { useEffect, useState } from "react";
 import { FaQuestionCircle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+
+import { IoIosGitMerge } from "react-icons/io";
+import { VscRepo } from "react-icons/vsc";
+import { GoIssueOpened } from "react-icons/go";
+import { GoIssueClosed } from "react-icons/go";
+import { GoIssueDraft } from "react-icons/go";
+import { IoGitCommitOutline } from "react-icons/io5";
+import { IoIosGitPullRequest } from "react-icons/io";
+
+import { FaGithubAlt } from "react-icons/fa6";
+import { FaGitlab } from "react-icons/fa6";
+import { FaGitAlt } from "react-icons/fa";
+
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { FaStar } from "react-icons/fa";
-import GitHubCalendar from "react-github-calendar";
+import GithubContributionCalendar from "../components/GithubContributionCalendar";
 import getQuote from "../utils/getQuote";
+import getContributionData from "../utils/getContributionData";
 
 const StatsPage = () => {
-  const [ghUsername, setGhUsername] = useState("");
+  // States for storing user info
+  const [userAvatar, setUserAvatar] = useState("");
+  const [username, setUsername] = useState("");
   const [followers, setFollowers] = useState("");
   const [location, setLocation] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
   const [githubURL, setGithubURL] = useState("");
 
+  // States for storing user contribution data
+  const [totalContributions, setTotalContributions] = useState("");
+  const [openIssues, setOpenIssues] = useState("");
+  const [closedIssues, setClosedIssues] = useState("");
+  const [totalIssueContributions, setTotalIssueContributions] = useState("");
+  const [totalCommitContributions, setTotalCommitContributions] = useState("");
+  const [totalPullRequestContributions, setTotalPullRequestContributions] =
+    useState("");
+
+  const [popularPrName, setPopularPrName] = useState("");
+  const [popularPrState, setPopularPrState] = useState("");
+  const [popularPrCreationDate, setPopularPrCreationDate] = useState("");
+  const [popularPrURL, setPopularPrURL] = useState("");
+
+  const [totalRepositoryContributions, setTotalRepositoryContributions] =
+    useState("");
+  const [topRepoName1, setTopRepoName1] = useState("");
+  const [topRepoName2, setTopRepoName2] = useState("");
+  const [topRepoName3, setTopRepoName3] = useState("");
+  const [topRepoName4, setTopRepoName4] = useState("");
+  const [topRepoURL1, setTopRepoURL1] = useState("");
+  const [topRepoURL2, setTopRepoURL2] = useState("");
+  const [topRepoURL3, setTopRepoURL3] = useState("");
+  const [topRepoURL4, setTopRepoURL4] = useState("");
+
+  // States for storing user activity data
+  const [mostProductiveDate, setMostProductiveDate] = useState("");
+  const [maxContributionCount, setMaxContributionCount] = useState("");
+  const [maxStreak, setMaxStreak] = useState("");
+  const [activeDays, setActiveDays] = useState("");
+
   // Quotes part
-  const [quote , setQuote] = useState("You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one.");
+  const [quote, setQuote] = useState(
+    "You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one."
+  );
   const [author, setAuthor] = useState("John Lennon");
 
-  async function fetchQuote(){
+  async function fetchQuote() {
     const res = await getQuote();
     setQuote(res[0].quote);
     setAuthor(res[0].author);
   }
 
   useEffect(() => {
-    setGhUsername(localStorage.getItem("username") || "errorGettingUsername");
+    setUsername(localStorage.getItem("username") || "errorGettingUsername");
     setFollowers(localStorage.getItem("followers") || "-1");
     setLocation(localStorage.getItem("location") || "errorGettingLocation");
     setUserAvatar(localStorage.getItem("avatar") || "");
     setGithubURL(localStorage.getItem("githubUrl") || "errorGettingGithubURL");
-    fetchQuote();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (username) {
+        await fetchQuote();
+        await getContributionData();
+        updateState();
+      }
+    };
+    fetchData();
+  }, [username]); // Run this effect whenever the username changes
+
+  function updateState() {
+    // contribution data
+    setTotalContributions(localStorage.getItem("totalContributions") || "");
+    setOpenIssues(localStorage.getItem("openIssues") || "");
+    setClosedIssues(localStorage.getItem("closedIssues") || "");
+    setTotalIssueContributions(
+      localStorage.getItem("totalIssueContributions") || ""
+    );
+    setTotalCommitContributions(
+      localStorage.getItem("totalCommitContributions") || ""
+    );
+    setTotalPullRequestContributions(
+      localStorage.getItem("totalPullRequestContributions") || ""
+    );
+    setTotalRepositoryContributions(
+      localStorage.getItem("totalRepositoryContributions") || ""
+    );
+
+    // User's Popular PR's data
+    setPopularPrName(localStorage.getItem("popularPrName") || "");
+    setPopularPrState(localStorage.getItem("popularPrState") || "");
+    setPopularPrCreationDate(
+      localStorage.getItem("popularPrCreationDate") || ""
+    );
+    setPopularPrURL(localStorage.getItem("popularPrURL") || "");
+
+    // User Top Repos
+    setTopRepoName1(localStorage.getItem("topRepoName1") || "");
+    setTopRepoName2(localStorage.getItem("topRepoName2") || "");
+    setTopRepoName3(localStorage.getItem("topRepoName3") || "");
+    setTopRepoName4(localStorage.getItem("topRepoName4") || "");
+    setTopRepoURL1(localStorage.getItem("topRepoURL1") || "");
+    setTopRepoURL2(localStorage.getItem("topRepoURL2") || "");
+    setTopRepoURL3(localStorage.getItem("topRepoURL3") || "");
+    setTopRepoURL4(localStorage.getItem("topRepoURL4") || "");
+
+    // User Activity Details
+    setMostProductiveDate(localStorage.getItem("mostProductiveDate") || "");
+    setMaxContributionCount(localStorage.getItem("maxContributionCount") || "");
+    setMaxStreak(localStorage.getItem("maxStreak") || "");
+    setActiveDays(localStorage.getItem("activeDays") || "");
+  }
+
+  function getBadge(contributionCount) {
+    if (contributionCount > 1500) {
+      return "Master";
+    } else if (contributionCount > 1000) {
+      return "Expert";
+    } else if (contributionCount > 500) {
+      return "Intermediate";
+    } else if (contributionCount > 250) {
+      return "Skilled";
+    } else if (contributionCount < 250) {
+      return "Novice";
+    } else {
+      return "No Badge";
+    }
+  }
 
   return (
     <>
@@ -66,7 +183,7 @@ const StatsPage = () => {
             <ul className="flex flex-col gap-[0.5rem]">
               <li className="flex gap-[1rem] text-[1.5rem]">
                 <strong className="text-lightGrey">Username:</strong>
-                <span className="text-lightBlue">{ghUsername}</span>
+                <span className="text-lightBlue">{username}</span>
               </li>
               <li className="flex gap-[1rem] text-[1.5rem]">
                 <strong className="text-lightGrey">Followers:</strong>
@@ -79,7 +196,7 @@ const StatsPage = () => {
               <li className="flex gap-[1rem] text-[1.5rem]">
                 <strong className="text-lightGrey">Badge:</strong>
                 <span className="flex items-center gap-[0.5rem] text-lightBlue">
-                  Professional
+                  {totalContributions && getBadge(totalContributions)}
                   <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
                 </span>
               </li>
@@ -88,70 +205,279 @@ const StatsPage = () => {
         </div>
 
         {/* Contribution Graph Section  */}
-        <div className="contributionGraph w-[80%] flex flex-col justify-center items-center p-[1rem]">
+        <div className="contributionGraph w-[80%] flex flex-col justify-center items-center p-[1rem] mt-[2rem]">
           <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
             Contribution Graph
           </h1>
           <div className="contributionCalendar bg-darkGrey font-secondary px-[1rem] pb-[0.5rem] pt-[1rem] rounded-[0.625rem] leading-[2rem]">
-            {ghUsername && (
-              <GitHubCalendar
-                username={ghUsername}
-                blockSize={8}
-                blockMargin={3}
-                color="#9CDAF1"
-                colorScheme="light"
-                fontSize={16}
-                style={{
-                  color: "#ABABAB"
-                }}
+            {username && (
+              <GithubContributionCalendar
+                ghUsername={username}
+                sizeOfBlock={10}
+                marginOfBlock={5}
               />
             )}
           </div>
         </div>
 
         {/* Github Summary Section */}
-        <div className="summarySection w-[80%] flex flex-col gap-[0.5rem] justify-center items-center p-[1rem]">
+        <div className="summarySection w-[80%] flex flex-col gap-[0.5rem] justify-center items-center p-[1rem] mt-[2rem]">
           <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
             Summary
           </h1>
           <ul className="statSummary w-[100%] flex flex-col gap-[1rem] justify-center items-center">
             <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-              <FaGithub className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <IoIosGitMerge className="text-lightBlue text-[1.5rem] w-[15%]" />
               <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
-                Total Active Days:{" "}
+                Total Contributions:{" "}
               </strong>
               <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
-                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold">
-                  210
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {totalContributions}
                 </span>
                 <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
               </div>
             </li>
+
             <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-              <FaGithub className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <VscRepo className="text-lightBlue text-[1.5rem] w-[15%]" />
               <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
-                Total Active Days:{" "}
+                Total Repos Contributed:{" "}
               </strong>
               <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
-                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold">
-                  210
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {totalRepositoryContributions}
                 </span>
                 <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
               </div>
             </li>
+
             <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-              <FaGithub className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <GoIssueOpened className="text-lightBlue text-[1.5rem] w-[15%]" />
               <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
-                Pull Requests Merged:{" "}
+                Issues Open:{" "}
               </strong>
               <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
-                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold">
-                  210
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {openIssues}
+                </span>
+                <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+              </div>
+            </li>
+
+            <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+              <GoIssueClosed className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
+                Issues Closed:{" "}
+              </strong>
+              <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {closedIssues}
+                </span>
+                <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+              </div>
+            </li>
+
+            <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+              <GoIssueDraft className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
+                Total Issue Contributions:{" "}
+              </strong>
+              <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {totalIssueContributions}
+                </span>
+                <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+              </div>
+            </li>
+
+            <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+              <IoGitCommitOutline className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
+                Total Commit Contributions:{" "}
+              </strong>
+              <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {totalCommitContributions}
+                </span>
+                <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+              </div>
+            </li>
+
+            <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+              <IoIosGitPullRequest className="text-lightBlue text-[1.5rem] w-[15%]" />
+              <strong className="text-[1.7rem] text-lightGrey font-primary w-[50%]">
+                Pull Requests Contributions:{" "}
+              </strong>
+              <div className="score flex gap-[0.5rem] justify-center items-center w-[35%]">
+                <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
+                  {totalPullRequestContributions}
                 </span>
                 <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
               </div>
             </li>
           </ul>
+        </div>
+
+        {/* Activity Stats  */}
+        <div className="activityStats w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[2rem]">
+          <div className="leftPart flex flex-col gap-[2rem] justify-center items-center">
+            <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+              <FaGithubAlt className="text-white w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
+            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              Activity
+            </h1>
+            <ul className="flex flex-col gap-[0.5rem] w-[80%]">
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">Active Days:</strong>
+                <span className="text-lightBlue text-center w-[40%]">
+                  {activeDays}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                  Highest Streak:
+                </strong>
+                <span className="text-lightBlue text-center w-[40%]">
+                  {maxStreak}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                  Most Productive Date:
+                </strong>
+                <span className="text-lightBlue text-center w-[40%]">
+                  {mostProductiveDate}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                  Most Contribution Count:
+                </strong>
+                <span className="text-lightBlue text-center w-[40%]">
+                  {maxContributionCount}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Top Repo  */}
+        <div className="activityStats w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[2rem]">
+          <div className="leftPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
+            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              Repositories
+            </h1>
+            <ul className="flex flex-col gap-[0.5rem] w-[80%]">
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                1. {`${topRepoName1}`}
+                </strong>
+                <a
+                  href={topRepoURL1}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[40%] flex justify-center items-center"
+                >
+                  <FaGithub className="text-darkGrey p-[0.2rem] text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
+                </a>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                2. {`${topRepoName2}`}
+                </strong>
+                <a
+                  href={topRepoURL2}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[40%] flex justify-center items-center"
+                >
+                  <FaGithub className="text-darkGrey p-[0.2rem] text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
+                </a>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[90%]">
+                3. {`${topRepoName3}`}
+                </strong>
+                <a
+                  href={topRepoURL3}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[40%] flex justify-center items-center"
+                >
+                  <FaGithub className="text-darkGrey p-[0.2rem] text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
+                </a>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+              <strong className="text-lightGrey w-[90%]">
+                4. {`${topRepoName4}`}
+                </strong>
+                <a
+                  href={topRepoURL4}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[40%] flex justify-center items-center"
+                >
+                  <FaGithub className="text-darkGrey p-[0.2rem] text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="right flex flex-col gap-[2rem] justify-center items-center">
+            <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+              <FaGitlab className="text-white w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+
+        {/* Popular PR  */}
+        <div className="popularPrStats w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[2rem]">
+          <div className="leftPart flex flex-col gap-[2rem] justify-center items-center">
+            <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+              <FaGitAlt className="text-white w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
+            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              Top Pull Request
+            </h1>
+            <ul className="flex flex-col gap-[0.5rem] w-[80%]">
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[40%]">Title:</strong>
+                <span className="text-lightBlue text-center w-[60%]">
+                  {popularPrName}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[40%]">State:</strong>
+                <span className="text-lightBlue text-center w-[60%]">
+                  {popularPrState}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[40%]">Created On:</strong>
+                <span className="text-lightBlue text-center w-[60%]">
+                  {popularPrCreationDate}
+                </span>
+              </li>
+              <li className="flex gap-[1rem] text-[1.5rem]">
+                <strong className="text-lightGrey w-[40%]">Repo Link:</strong>
+                <a
+                  href={popularPrURL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-center flex justify-center items-center w-[60%]"
+                >
+                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue hover:text-darkBlue cursor-pointer" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
 
           {/* Chart & Most Productive Day Section  */}
           <div className="piechartAndDay w-[100%] flex justify-center items-center p-[1rem] gap-[2rem]">
@@ -163,21 +489,20 @@ const StatsPage = () => {
             </div>
             <div className="productiveDay flex flex-col justify-center items-center">
               <img src={day} alt="productive day" />
-              <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
-                Most Productive Day
+              <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem] text-center">
+                Most Productive Date
               </h2>
             </div>
           </div>
-        </div>
+
 
         {/* Quote of the Day  */}
-        <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[3rem] justify-center items-center p-[3rem]">
+        <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[3rem] justify-center items-center p-[3rem] mt-[2rem]">
           <h1 className="sectionHeading font-secondary text-lightRed text-[3rem] font-secondary font-semibold">
             Quote of the Day
           </h1>
           <blockquote className="w-[80%] font-secondary text-[2rem] text-lightGrey leading-[3.5rem] relative">
-            {`"${quote}"`}{" "}
-            <br />
+            {`"${quote}"`} <br />
             <cite className="text-white text-right block font-semibold">
               {`-${author}`}
             </cite>
@@ -185,7 +510,11 @@ const StatsPage = () => {
         </div>
 
         {/* Star on Github  */}
-        <a href="https://github.com/singodiyashubham87/GitWrap" target="_blank" rel="noreferrer">
+        <a
+          href="https://github.com/singodiyashubham87/GitWrap"
+          target="_blank"
+          rel="noreferrer"
+        >
           <button className="bg-darkGrey my-[4rem] block text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300">
             {" "}
             <FaStar className="text-lightBlue text-[1.5rem] inline" /> on GitHub
@@ -195,7 +524,16 @@ const StatsPage = () => {
         <footer className="w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center ">
           <small className="w-[80%] text-[1.5rem] text-lightGrey font-secondary leading-0 text-center">
             Designed & Developed by{" "}
-            <span className="text-lightRed cursor-pointer"><a href="https://shubham-s-socials.vercel.app/" target="_blank" rel="noreferrer" className="font-semibold uppercase hover:text-lightBlue hover:font-bold">Master Mickey</a></span>
+            <span className="text-lightRed cursor-pointer">
+              <a
+                href="https://shubham-s-socials.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold uppercase hover:text-lightBlue hover:font-bold"
+              >
+                Master Mickey
+              </a>
+            </span>
           </small>
         </footer>
       </div>

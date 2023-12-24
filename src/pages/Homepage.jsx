@@ -2,7 +2,7 @@ import logo from "../assets/images/logo.png";
 import octocatImage from "../assets/images/octocat.png";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import validateGithubUsername from "../utils/validateGithubUsername";
 import Loader from "../components/Loader";
@@ -13,19 +13,15 @@ const Homepage = () => {
   const [ghUsername, setGhUsername] = useState("");
   const [loader, setLoader] = useState(false); //loader variable
 
-  // Show & Hide Loader component
-  const showLoader = () => setLoader(true);
-  const hideLoader = () => setLoader(false);
+  // to clear localStorage data 
+  useEffect(()=>{
+    localStorage.clear();
+  },[])
 
   // Update Github Username value when user type in the input box
   const handleInputChange = (e) => {
     setGhUsername(e.target.value);
   };
-
-//   const handleKeyDown = (e) => {
-//     if(e.key === "Enter") 
-//         console.log(e);
-//   }
 
   const handleSubmit = async (e) => {
     if(e.type === "click"){
@@ -52,6 +48,10 @@ const Homepage = () => {
       navigateTo("/stats");
     }
   };
+
+    // Show & Hide Loader component
+    const showLoader = () => setLoader(true);
+    const hideLoader = () => setLoader(false);
 
   // Show & Hide Model
   const openModal = () => setshowModal(true);

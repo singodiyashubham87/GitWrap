@@ -5,13 +5,25 @@ Dependabot
 Dockerise
 CI/CD
 
-Done: 
+
+Data fetch Done: 
 
 Separate Card:
+badgeDetailsIcon
+
+Separate Card:
+[getMostUsedLanguage()]
+>Most used languages[Array of 5]
+{Show using piechart by utilising chart.js}
+
+
+Implemented:
+
+
 >Username
 >Followers
 >Location
-
+>Badge 
 
 >Total Contributions
 >Issues Opened
@@ -20,25 +32,22 @@ Separate Card:
 >Total Pull Requests
 
 Separate Card:
->Repos Contributed
->Top Repositories
-
-Separate Card:
 [getActiveDays()]
->Active Days
->Most Productive Day + maxContributionCount on that day
->Max. Streak
+>Active Days(activeDays)
+>Most Productive Date(mostProductiveDate) + maxContributionCount on that day(maxContributionCount)
+>Max. Streak(maxStreak)
 
 Separate Card:
-[getMostUsedLanguage()]
->Most used languages[Array of 5]
-{Show using piechart by utilising chart.js}
+>Top Repo 1
+>Top Repo 2
+>Top Repo 3
+
+Separate Card:
+>Popular Pr name
+>Popular Pr state 
+>Popular Pr creation date 
+>Popular Pr URL
 
 
-restrictedContributionsCount // A count of contributions made by the user that the viewer cannot access.  Only non-zero when the user has chosen to share their private contribution counts.
-totalIssueContributions // How many issues the user opened.
-totalCommitContributions // How many commits were made by the user in this time span.
-totalRepositoryContributions // How many repositories the user created.
-totalPullRequestContributions // How many pull requests the user opened.
-totalPullRequestReviewContributions // How many pull request reviews the user left.
-repositoryContributions // A list of repositories owned by the user that the user created in this time range.
+
+
