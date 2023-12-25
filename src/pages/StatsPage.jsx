@@ -1,6 +1,6 @@
 import Loader from "../components/Loader";
 
-import logo from "../assets/images/logo.png";
+// import logo from "../assets/images/logo.png";
 import avatar from "../assets/images/avatar.png";
 
 // Image Days Name
@@ -193,15 +193,6 @@ const StatsPage = () => {
     // User Top Repos
     setTopReposCount(localStorage.getItem("topReposCount") || "0");
 
-    // setTopRepoName1(localStorage.getItem("topRepoName1") || "");
-    // setTopRepoName2(localStorage.getItem("topRepoName2") || "");
-    // setTopRepoName3(localStorage.getItem("topRepoName3") || "");
-    // setTopRepoName4(localStorage.getItem("topRepoName4") || "");
-    // setTopRepoURL1(localStorage.getItem("topRepoURL1") || "");
-    // setTopRepoURL2(localStorage.getItem("topRepoURL2") || "");
-    // setTopRepoURL3(localStorage.getItem("topRepoURL3") || "");
-    // setTopRepoURL4(localStorage.getItem("topRepoURL4") || "");
-
     // User Activity Details
     setMostProductiveDate(localStorage.getItem("mostProductiveDate") || "");
     setMaxContributionCount(localStorage.getItem("maxContributionCount") || "");
@@ -248,15 +239,11 @@ const StatsPage = () => {
   return (
     <>
       {loader && <Loader />}
-      <div className="mainContainer min-h-[100dvh] w-[100%]relative flex flex-col justify-center items-center gap-[1rem]">
-        <img
-          src={logo}
-          alt="logo"
-          className="absolute w-[10rem] vvsm:w-[15rem] gsm:w-[20rem] top-[0.5rem] left-[0.5rem] gsm:top-[1rem] gsm:left-[1rem]"
-        />
-
+      
+      <div className="w-[100%] lg:w-[80%] lg:p-[1rem] xl:w-[60%] 2xl:w-[50%] m-auto">
+      <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[10rem]">
         {/* User Details Section  */}
-        <div className="userDetails w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[10rem]">
+        <div className="userDetails w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem]">
           <div className="leftPart flex flex-col gap-[2rem] justify-center items-center">
             <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer border-2 border-white">
               <img
@@ -599,7 +586,7 @@ const StatsPage = () => {
         <div className="piechartAndDay w-[80%] flex justify-center items-center p-[1rem] gap-[2rem]">
           {langButton ? (
             <button
-              className="text-center w-[25%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"
+              className="text-center w-[25%] lg:w-[30%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"
               onClick={handleLangButton}
             >
               Get Most Used Languages
@@ -627,7 +614,7 @@ const StatsPage = () => {
         </div>
 
         {/* Quote of the Day  */}
-        <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[3rem] justify-center items-center p-[3rem] mt-[2rem]">
+        <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[3rem] justify-center items-center p-[3rem] mt-[2rem] rounded-[0.625rem]">
           <h1 className="sectionHeading font-secondary text-lightRed text-[3rem] font-secondary font-semibold uppercase">
             Quote of the Day
           </h1>
@@ -650,24 +637,10 @@ const StatsPage = () => {
             <FaStar className="text-lightBlue text-[1.5rem] inline" /> on GitHub
           </button>
         </a>
-
-        <footer className="w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center ">
-          <small className="w-[80%] text-[1.5rem] text-lightGrey font-secondary leading-0 text-center">
-            Designed & Developed by{" "}
-            <span className="text-lightRed cursor-pointer">
-              <a
-                href="https://shubham-s-socials.vercel.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold uppercase hover:text-lightBlue hover:font-bold"
-              >
-                Master Mickey
-              </a>
-            </span>
-          </small>
-        </footer>
+      </div>
       </div>
     </>
+
   );
 };
 
