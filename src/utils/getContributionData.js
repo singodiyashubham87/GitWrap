@@ -2,9 +2,8 @@ import getActiveDays from "./getActiveDays";
 import { octokit } from "./getOctokit";
 
 
-export default async function getContributionData() {
+export default async function getContributionData(username) {
   const YEAR = 2023;
-  const username = "singodiyashubham87";
 
       const query = `
       query {
@@ -93,13 +92,16 @@ function storeData(userData){
   localStorage.setItem("popularPrName", contributionsCollection.popularPullRequestContribution.pullRequest.title);  
   localStorage.setItem("popularPrState", contributionsCollection.popularPullRequestContribution.pullRequest.state);  
   localStorage.setItem("popularPrCreationDate", contributionsCollection.popularPullRequestContribution.pullRequest.createdAt.slice(0,10));  
-  localStorage.setItem("popularPrURL", contributionsCollection.popularPullRequestContribution.pullRequest.url);  
-  localStorage.setItem("topRepoName1", contributionsCollection.commitContributionsByRepository[0].repository.name)
-  localStorage.setItem("topRepoName2", contributionsCollection.commitContributionsByRepository[1].repository.name)
-  localStorage.setItem("topRepoName3", contributionsCollection.commitContributionsByRepository[2].repository.name)
-  localStorage.setItem("topRepoName4", contributionsCollection.commitContributionsByRepository[3].repository.name)
-  localStorage.setItem("topRepoURL1", contributionsCollection.commitContributionsByRepository[0].repository.url)
-  localStorage.setItem("topRepoURL2", contributionsCollection.commitContributionsByRepository[1].repository.url)
-  localStorage.setItem("topRepoURL3", contributionsCollection.commitContributionsByRepository[2].repository.url)
-  localStorage.setItem("topRepoURL4", contributionsCollection.commitContributionsByRepository[3].repository.url)
+  localStorage.setItem("popularPrURL", contributionsCollection.popularPullRequestContribution.pullRequest.url); 
+  
+  storeTopRepos(contributionsCollection.commitContributionsByRepository);
+}
+
+function storeTopRepos(topReposObj){
+  const topReposCount = Math.min(topReposObj.length, 4);
+  localStorage.setItem("topReposCount", topReposCount);
+  for(let i = 0; i < topReposCount;i++){
+    localStorage.setItem(`topRepoName${i}`, topReposObj[i].repository.name);
+    localStorage.setItem(`topRepoURL${i}`, topReposObj[i].repository.url);
+  }
 }
