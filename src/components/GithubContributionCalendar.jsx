@@ -12,7 +12,7 @@ const GithubContributionCalendar = (props) => {
       blockMargin={marginOfBlock}
       color="#9CDAF1"
       colorScheme="light"
-      fontSize={16}
+      fontSize={12}
       style={{
         color: "#ABABAB",
       }}
