@@ -1,6 +1,6 @@
 import { octokit } from "./getOctokit";
 
-export default async function getAllRespos(username){
+export default async function getAllRepos(username){
         try {
           let page = 1;
           let repos = [];

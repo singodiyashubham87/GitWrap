@@ -48,7 +48,7 @@ export default async function (username) {
 
   // Get the top 5 languages and display the result
   const topLanguagesArray = sortAndTrim(langObj);
-  console.log(topLanguagesArray);
+  return topLanguagesArray;
 }
 
 // Function to sort the languages object and return a languages array and then trim the languages array
@@ -62,5 +62,8 @@ function sortAndTrim(obj) {
     0,
     Math.min(sortedLangArray.length, 5)
   );
+  localStorage.setItem("languagesFetched", "true");
   return trimmedLangArray;
 }
+
+

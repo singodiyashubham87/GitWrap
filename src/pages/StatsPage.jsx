@@ -35,9 +35,9 @@ import { FaStar } from "react-icons/fa";
 import GithubContributionCalendar from "../components/GithubContributionCalendar";
 import getQuote from "../utils/getQuote";
 import getContributionData from "../utils/getContributionData";
+import getMostUsedLanguages from "../utils/getMostUsedLanguages";
 
 const StatsPage = () => {
-
   const [loader, setLoader] = useState(true);
 
   // States for storing user info
@@ -80,6 +80,9 @@ const StatsPage = () => {
   const [dayIndex, setDayIndex] = useState(null);
   const [dayImage, setDayImage] = useState(null);
 
+  const [langArray, setLangArray] = useState([]);
+  const [languagesFetched, setLanguagesFetched] = useState(false);
+
   const getDayIndex = (dateString) => {
     const date = new Date(dateString);
     const dayIndex = date.getDay();
@@ -91,6 +94,8 @@ const StatsPage = () => {
       if (username) {
         await fetchQuote();
         await getContributionData(username);
+        const resArray = await getMostUsedLanguages(username);
+        setLangArray(resArray);
         updateState();
         setLoader(false);
       }
@@ -145,8 +150,8 @@ const StatsPage = () => {
   useEffect(() => {
     setUsername(localStorage.getItem("username") || "errorGettingUsername");
     setFollowers(localStorage.getItem("followers") || "-1");
-    if(localStorage.getItem("location") != "null")
-    setLocation(localStorage.getItem("location") || "errorGettingLocation");
+    if (localStorage.getItem("location") != "null")
+      setLocation(localStorage.getItem("location") || "errorGettingLocation");
     setUserAvatar(localStorage.getItem("avatar") || "");
     setGithubURL(localStorage.getItem("githubUrl") || "errorGettingGithubURL");
   }, []);
@@ -194,6 +199,9 @@ const StatsPage = () => {
     setMaxContributionCount(localStorage.getItem("maxContributionCount") || "");
     setMaxStreak(localStorage.getItem("maxStreak") || "");
     setActiveDays(localStorage.getItem("activeDays") || "");
+
+    //Top Languages
+    setLanguagesFetched(localStorage.getItem("languagesFetched") || "");
   }
 
   // Top Repos Array Update
@@ -234,7 +242,7 @@ const StatsPage = () => {
 
   return (
     <>
-    {loader && <Loader />}
+      {loader && <Loader />}
       <div className="mainContainer min-h-[100dvh] w-[100%]relative flex flex-col justify-center items-center gap-[1rem]">
         <img
           src={logo}
@@ -540,12 +548,14 @@ const StatsPage = () => {
 
         {/* Chart & Most Productive Day Section  */}
         <div className="piechartAndDay w-[80%] flex justify-center items-center p-[1rem] gap-[2rem]">
-          <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[45%]">
-            <img src={chart} alt="piechart" />
-            <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
-              Most Used Languages
-            </h2>
-          </div>
+          {languagesFetched && (
+            <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[45%]">
+              <img src={chart} alt="piechart" />
+              <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
+                Most Used Languages
+              </h2>
+            </div>
+          )}
           <div className="productiveDay flex flex-col gap-4 justify-center items-center w-[55%]">
             <div className="productiveDayImage w-[25rem] overflow-hidden">
               <img
