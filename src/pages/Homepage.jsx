@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import validateGithubUsername from "../utils/validateGithubUsername";
 import Loader from "../components/Loader";
+import Canvas from "../components/Canvas";
+import Cursor from "../components/Cursor";
 
 const Homepage = () => {
   const navigateTo = useNavigate(); // Navigation control
@@ -67,6 +69,8 @@ const Homepage = () => {
         />
       )}
       {loader && <Loader />}
+        <Canvas/>
+        <Cursor/>
       <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center">
         <img
           src={logo}

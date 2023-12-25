@@ -46,6 +46,9 @@ import { TbChristmasTree } from "react-icons/tb";
 import { LuGitFork } from "react-icons/lu";
 import { LuGitPullRequestClosed } from "react-icons/lu";
 
+import Canvas from "../components/Canvas";
+import Cursor from "../components/Cursor";
+
 const StatsPage = () => {
   const [loader, setLoader] = useState(true);
 
@@ -246,13 +249,14 @@ const StatsPage = () => {
   return (
     <>
       {loader && <Loader />}
-
+      <Cursor />
+      <Canvas />
       <div className="w-[100%] lg:w-[75%] lg:p-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative">
         <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
           {/* User Details Section  */}
           <div className="userDetails w-[100%] vvsm:w-[90%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row gap-[0.5rem] md:gap-[2rem] justify-evenly items-stretch p-[1rem] ">
             <div className="leftPart flex flex-col gap-[0.5rem] vsm:gap-[1rem] md:gap-[2rem] justify-center items-center">
-              <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:h-[10rem] md:w-[10rem] md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
+              <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:h-[10rem] md:w-[10rem] md:border-4 md:border-lightBlue md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
                 <img
                   src={userAvatar || avatar}
                   alt="userAvatar"
@@ -311,7 +315,7 @@ const StatsPage = () => {
 
           {/* Github Summary Section */}
           {totalContributions && (
-            <div className="summarySection w-[100%] md:w-[95%] flex flex-col gap-[0.5rem] justify-center items-center p-[0.5rem] vsm:p-[1rem] md:py-[1rem] md:px-0 mt-[2rem] relative">
+            <div className="summarySection w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col gap-[0.5rem] justify-center items-center p-[0.5rem] vsm:p-[1rem] md:py-[1rem] md:px-0 mt-[2rem] relative bg-darkGrey rounded-[0.625rem]">
               <GiWinterHat className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
               <GiWinterHat className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
               <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
@@ -324,7 +328,7 @@ const StatsPage = () => {
                     Total Contributions:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {totalContributions}
                     </span>
                     <a
@@ -343,7 +347,7 @@ const StatsPage = () => {
                     Total Repos Contributed:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {totalRepositoryContributions}
                     </span>
                     <a
@@ -362,7 +366,7 @@ const StatsPage = () => {
                     Issues Open:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {openIssues}
                     </span>
                     <a
@@ -381,7 +385,7 @@ const StatsPage = () => {
                     Issues Closed:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {closedIssues}
                     </span>
                     <a
@@ -400,7 +404,7 @@ const StatsPage = () => {
                     Total Issue Contributions:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {totalIssueContributions}
                     </span>
                     <a
@@ -419,7 +423,7 @@ const StatsPage = () => {
                     Total Commit Contributions:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {totalCommitContributions}
                     </span>
                     <a
@@ -438,7 +442,7 @@ const StatsPage = () => {
                     Pull Requests Contributions:{" "}
                   </strong>
                   <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-lightGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-darkGrey font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
                       {totalPullRequestContributions}
                     </span>
                     <a
@@ -632,8 +636,8 @@ const StatsPage = () => {
 
           {/* Quote of the Day  */}
           <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center p-[1rem] py-[2rem] md:py-[3rem] md:px-[1rem] mt-[2rem] rounded-[0.625rem] relative">
-          <LuGitFork className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
-          <LuGitPullRequestClosed className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
+            <LuGitFork className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+            <LuGitPullRequestClosed className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
             <h1 className="sectionHeading font-secondary text-lightRed text-[1.1rem] vvsm:text-[1.3rem] vsm:text-[1.5rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
               Quote of the Day
             </h1>

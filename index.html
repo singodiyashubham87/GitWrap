@@ -7,17 +7,14 @@
     <title>GitWrap - GitHub Contributions Analyzer!</title>
     <link rel="stylesheet" href="./src/index.css">
   </head>
-  <body class="relatiev">
+  <body class="cursor-none">
     <img
     src="./src/assets/images/logo.png"
     alt="logo"
     class="absolute w-[10rem] vvsm:w-[15rem] gsm:w-[20rem] top-[0.5rem] left-[0.5rem] gsm:top-[1rem] gsm:left-[1rem]"
   />
-  <div class="fixed top-0 bottom-0 right-0 left-0 overflow-hidden border-2 border-black">
-    <canvas id="myCanvas"></canvas>
-  </div>
     <div id="root"></div>
-    <footer class="w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center z-[10]">
+    <footer class="z-[10] w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center z-[10]">
       <small class="w-[80%] vsm:text-[1.2rem] gsm:text-[1.2rem] gsm:text-[1.5rem] md:text-[2rem] text-lightGrey font-secondary leading-0 text-center">
         Designed & Developed by 
         <span class="text-lightRed cursor-pointer">
@@ -32,7 +29,6 @@
         </span>
       </small>
     </footer>
-    <script src="./src/utils/myCanvas.js"></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
