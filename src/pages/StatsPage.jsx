@@ -39,6 +39,13 @@ import getContributionData from "../utils/getContributionData";
 import getMostUsedLanguages from "../utils/getMostUsedLanguages";
 import LanguageChart from "../components/LanguageChart";
 
+// Additional Icons
+import { GiWinterHat } from "react-icons/gi";
+import { GiWinterGloves } from "react-icons/gi";
+import { TbChristmasTree } from "react-icons/tb";
+import { LuGitFork } from "react-icons/lu";
+import { LuGitPullRequestClosed } from "react-icons/lu";
+
 const StatsPage = () => {
   const [loader, setLoader] = useState(true);
 
@@ -239,410 +246,420 @@ const StatsPage = () => {
   return (
     <>
       {loader && <Loader />}
-      
-      <div className="w-[100%] lg:w-[75%] lg:p-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%]">
-      <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
-        {/* User Details Section  */}
-        <div className="userDetails w-[100%] vvsm:w-[90%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row gap-[0.5rem] md:gap-[2rem] justify-evenly items-stretch p-[1rem] ">
-          <div className="leftPart flex flex-col gap-[0.5rem] vsm:gap-[1rem] md:gap-[2rem] justify-center items-center">
-            <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:h-[10rem] md:w-[10rem] md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
-              <img
-                src={userAvatar || avatar}
-                alt="userAvatar"
-                className="w-full h-full object-cover"
-              />
+
+      <div className="w-[100%] lg:w-[75%] lg:p-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative">
+        <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
+          {/* User Details Section  */}
+          <div className="userDetails w-[100%] vvsm:w-[90%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row gap-[0.5rem] md:gap-[2rem] justify-evenly items-stretch p-[1rem] ">
+            <div className="leftPart flex flex-col gap-[0.5rem] vsm:gap-[1rem] md:gap-[2rem] justify-center items-center">
+              <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:h-[10rem] md:w-[10rem] md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
+                <img
+                  src={userAvatar || avatar}
+                  alt="userAvatar"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <a href={githubURL} target="_blank" rel="noreferrer">
+                <FaGithub className="text-lightBlue p-[0.25rem] vvsm:p-[0.3rem] vsm:p-[0.4rem] md:p-[0.4rem] text-[1.8rem] vvsm:text-[2rem] vsm:text-[2.5rem] md:text-[3rem] bg-darkGrey rounded-[50%] hover:text-darkBlue cursor-pointer" />
+              </a>
             </div>
-            <a href={githubURL} target="_blank" rel="noreferrer">
-              <FaGithub className="text-lightBlue p-[0.25rem] vvsm:p-[0.3rem] vsm:p-[0.4rem] md:p-[0.4rem] text-[1.8rem] vvsm:text-[2rem] vsm:text-[2.5rem] md:text-[3rem] bg-darkGrey rounded-[50%] hover:text-darkBlue cursor-pointer" />
-            </a>
+            <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[1rem] vsm:py-[1.5rem] md:px-[2rem] rounded-[0.5rem] mt-[1rem] md:mt-[0] relative">
+              <TbChristmasTree className="text-[10rem] text-violet-200 absolute right-[-15rem] opacity-[0.2]" />
+              <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
+                User Details
+              </h1>
+              <ul className="flex flex-col gap-[0.5rem]">
+                <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
+                  <strong className="text-lightGrey">Username:</strong>
+                  <span className="text-lightBlue">{username}</span>
+                </li>
+                <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
+                  <strong className="text-lightGrey">Followers:</strong>
+                  <span className="text-lightBlue">{followers}</span>
+                </li>
+                <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
+                  <strong className="text-lightGrey">Location:</strong>
+                  <span className="text-lightBlue">{location}</span>
+                </li>
+                <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
+                  <strong className="text-lightGrey">Badge:</strong>
+                  <span className="flex items-center gap-[0.3rem] vvsm:gap-[0.5rem] text-lightBlue">
+                    {totalContributions && getBadge(totalContributions)}
+                    <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[1rem] vsm:py-[1.5rem] md:px-[2rem] rounded-[0.5rem] mt-[1rem] md:mt-[0]">
-            <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-              User Details
+
+          {/* Contribution Graph Section  */}
+          <div className="contributionGraph w-[100%] md:w-[95%] flex flex-col justify-center items-center p-[1rem] mt-[2rem] relative">
+            <GiWinterGloves className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+            <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem]font-secondary font-semibold uppercase ">
+              Contribution Graph
             </h1>
-            <ul className="flex flex-col gap-[0.5rem]">
-              <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
-                <strong className="text-lightGrey">Username:</strong>
-                <span className="text-lightBlue">{username}</span>
-              </li>
-              <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
-                <strong className="text-lightGrey">Followers:</strong>
-                <span className="text-lightBlue">{followers}</span>
-              </li>
-              <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
-                <strong className="text-lightGrey">Location:</strong>
-                <span className="text-lightBlue">{location}</span>
-              </li>
-              <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
-                <strong className="text-lightGrey">Badge:</strong>
-                <span className="flex items-center gap-[0.3rem] vvsm:gap-[0.5rem] text-lightBlue">
-                  {totalContributions && getBadge(totalContributions)}
-                  <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Contribution Graph Section  */}
-        <div className="contributionGraph w-[100%] md:w-[95%] flex flex-col justify-center items-center p-[1rem] mt-[2rem] ">
-          <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem]font-secondary font-semibold uppercase ">
-            Contribution Graph
-          </h1>
-          <div className="contributionCalendar bg-darkGrey font-secondary px-[1rem] pb-[0.5rem] pt-[1rem] rounded-[0.625rem] leading-[2rem] w-[100%] ">
-            {username && (
-              <GithubContributionCalendar
-                ghUsername={username}
-                sizeOfBlock={10}
-                marginOfBlock={5}
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Github Summary Section */}
-        {totalContributions && (
-          <div className="summarySection w-[100%] md:w-[95%] flex flex-col gap-[0.5rem] justify-center items-center p-[0.5rem] vsm:p-[1rem] md:py-[1rem] md:px-0 mt-[2rem] ">
-            <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-              Summary
-            </h1>
-            <ul className="statSummary w-[100%] msm:w-[90%] md:w-[90%] flex flex-col gap-[1rem] justify-center items-center">
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <IoIosGitMerge className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Total Contributions:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {totalContributions}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/${username}`}
-                  >
-                    <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <VscRepo className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Total Repos Contributed:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {totalRepositoryContributions}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/${username}`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <GoIssueOpened className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Issues Open:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {openIssues}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aopen`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <GoIssueClosed className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Issues Closed:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {closedIssues}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aclosed`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <GoIssueDraft className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Total Issue Contributions:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {totalIssueContributions}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3Asingodiyashubham87`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <IoGitCommitOutline className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Total Commit Contributions:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {totalCommitContributions}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/${username}`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-
-              <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
-                <IoIosGitPullRequest className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]"  />
-                <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
-                  Pull Requests Contributions:{" "}
-                </strong>
-                <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
-                  <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
-                    {totalPullRequestContributions}
-                  </span>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={`https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3A${username}`}
-                  >
-                   <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        )}
-
-        {/* Activity Stats  */}
-        {activeDays && (
-          <div className="activityStats w-[100%] vsm:w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[0.5rem] md:gap-[2rem] justify-evenly md:items-center items-stretch p-[0.5rem] md:p-[1rem] mt-[2rem] ">
-            <div className="hidden md:block leftPart flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center">
-              <div className="userProfile w-[2rem] md:w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
-                <FaGithubAlt className="text-white w-full h-full object-cover" />
-              </div>
+            <div className="contributionCalendar bg-darkGrey font-secondary px-[1rem] pb-[0.5rem] pt-[1rem] rounded-[0.625rem] leading-[2rem] w-[100%] ">
+              {username && (
+                <GithubContributionCalendar
+                  ghUsername={username}
+                  sizeOfBlock={10}
+                  marginOfBlock={5}
+                />
+              )}
             </div>
-            <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[1rem] md:py-[2rem] rounded-[0.5rem] w-[100%] md:w-[70%]">
+          </div>
+
+          {/* Github Summary Section */}
+          {totalContributions && (
+            <div className="summarySection w-[100%] md:w-[95%] flex flex-col gap-[0.5rem] justify-center items-center p-[0.5rem] vsm:p-[1rem] md:py-[1rem] md:px-0 mt-[2rem] relative">
+              <GiWinterHat className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+              <GiWinterHat className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
               <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-                Activity
+                Summary
               </h1>
-              <ul className="flex flex-col gap-[0.5rem] w-[90%] md:w-[80%]">
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[90%]">
-                    Active Days:
+              <ul className="statSummary w-[100%] msm:w-[90%] md:w-[90%] flex flex-col gap-[1rem] justify-center items-center">
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <IoIosGitMerge className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Total Contributions:{" "}
                   </strong>
-                  <span className="text-lightBlue text-center w-[40%]">
-                    {activeDays}
-                  </span>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {totalContributions}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/${username}`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
                 </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[90%]">
-                    Highest Streak:
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <VscRepo className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Total Repos Contributed:{" "}
                   </strong>
-                  <span className="text-lightBlue text-center w-[40%]">
-                    {maxStreak}
-                  </span>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {totalRepositoryContributions}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/${username}`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
                 </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[90%]">
-                    Most Productive Date:
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <GoIssueOpened className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Issues Open:{" "}
                   </strong>
-                  <span className="text-lightBlue text-center w-[40%]">
-                    {mostProductiveDate}
-                  </span>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {openIssues}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aopen`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
                 </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[90%]">
-                    Most Contribution Count:
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <GoIssueClosed className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Issues Closed:{" "}
                   </strong>
-                  <span className="text-lightBlue text-center w-[40%]">
-                    {maxContributionCount}
-                  </span>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {closedIssues}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aclosed`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
+                </li>
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <GoIssueDraft className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Total Issue Contributions:{" "}
+                  </strong>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {totalIssueContributions}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3Asingodiyashubham87`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
+                </li>
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <IoGitCommitOutline className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Total Commit Contributions:{" "}
+                  </strong>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {totalCommitContributions}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/${username}`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
+                </li>
+
+                <li className="w-[100%] flex items-center justify-center gap-[0.5rem]">
+                  <IoIosGitPullRequest className="text-lightBlue text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.5rem] md:text-[1.5rem] w-[5%] md:w-[7%]" />
+                  <strong className="text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.7rem] text-lightGrey font-primary w-[70%] md:w-[75%]">
+                    Pull Requests Contributions:{" "}
+                  </strong>
+                  <div className="score flex gap-[0.3rem] md:gap-[0.5rem] justify-center items-center w-[25%] vvsm:w-[30%] md:w-[18%]">
+                    <span className="text-[0.8rem] vvsm:text-[0.9rem] vsm:text-[1rem] md:text-[1.5rem] value p-[0.1rem] md:p-[0.3rem] bg-darkGrey px-[0.2rem] md:px-[0.5rem] rounded-[0.5rem] text-white font-semibold min-w-[3rem] vsm:min-w-[3.5rem] md:min-w-[5rem] text-center">
+                      {totalPullRequestContributions}
+                    </span>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={`https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3A${username}`}
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.3rem] md:text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </div>
                 </li>
               </ul>
-            </div>
-          </div>
-        )}
-
-        {/* Top Repo  */}
-        {topReposArray.length > 2 ? (
-          <div className="activityStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ">
-            <div className="leftPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[100%] vvsm:w-[990%] md:w-[70%]">
-              <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-                Repositories
-              </h1>
-              <ul className="flex flex-col gap-[0.5rem] w-[90%] md:w-[80%]">
-                {topReposArray.map((repo, index) => {
-                  return (
-                    <>
-                      <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.9rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]" key={index}>
-                        <strong className="text-lightGrey w-[90%]">
-                          {index + 1}. {`${repo.name}`}
-                        </strong>
-                        <a
-                          href={repo.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="w-[40%] vvsm:w-[20%] flex justify-center items-center"
-                        >
-                          <FaGithub className="text-darkGrey p-[0.1rem] vvsm:p-[0.2rem] vsm:p-[0.25rem] text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] md:text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
-                        </a>
-                      </li>
-                    </>
-                  );
-                })}
-              </ul>
-            </div>
-            <div className="right hidden md:block flex flex-col gap-[2rem] justify-center items-center">
-              <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
-                <FaGitlab className="text-white w-full h-full object-cover" />
-              </div>
-            </div>
-          </div>
-        ) : (
-          <></>
-        )}
-
-
-        {/* Popular PR  */}
-        {popularPrName == "undefined" ? (
-          <></>
-        ) : (
-          <div className="popularPrStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[1rem] md:gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ">
-            <div className="leftPart hidden md:block flex flex-col gap-[2rem] justify-center items-center">
-              <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
-                <FaGitAlt className="text-white w-full h-full object-cover" />
-              </div>
-            </div>
-            <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[100%] md:w-[70%] md:px-[2rem]">
-              <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-                Top Pull Request
-              </h1>
-              <ul className="flex flex-col gap-[0.5rem] w-[90%]">
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[40%]">Title:</strong>
-                  <span className="text-lightBlue text-center w-[60%]">
-                    {popularPrName}
-                  </span>
-                </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[40%]">State:</strong>
-                  <span className="text-lightBlue text-center w-[60%]">
-                    {popularPrState}
-                  </span>
-                </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[40%]">
-                    Created On:
-                  </strong>
-                  <span className="text-lightBlue text-center w-[60%]">
-                    {popularPrCreationDate}
-                  </span>
-                </li>
-                <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
-                  <strong className="text-lightGrey w-[40%]">Repo Link:</strong>
-                  <a
-                    href={popularPrURL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-center flex justify-center items-center w-[60%]"
-                  >
-                    <HiOutlineExternalLink className="text-[1rem] md:text-[1.5rem] text-lightBlue hover:text-darkBlue cursor-pointer" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-
-        {/* Chart & Most Productive Day Section  */}
-        <div className="piechartAndDay w-[100%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row justify-center items-center p-[1rem] gap-[2rem] ">
-          {langButton ? (
-            <button
-              className="text-center w-[80%] md:w-[25%] lg:w-[30%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1rem] md:text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"
-              onClick={handleLangButton}
-            >
-              Get Most Used Languages
-            </button>
-          ) : (
-            <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[50%]">
-              {langArray && <LanguageChart data={langArray} />}
-              <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
-                Most Used Languages
-              </h2>
             </div>
           )}
-          <div className="productiveDay flex flex-col gap-4 justify-center items-center w-[100%] md:w-[50%]">
-            <div className="productiveDayImage w-[15rem] vsm:w-[20rem] md:w-[25rem] overflow-hidden">
-              <img
-                src={dayImage || monday}
-                alt="mostProductiveDay"
-                className="w-full h-full object-cover"
-              />
+
+          {/* Activity Stats  */}
+          {activeDays && (
+            <div className="activityStats w-[100%] vsm:w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[0.5rem] md:gap-[2rem] justify-evenly md:items-center items-stretch p-[0.5rem] md:p-[1rem] mt-[2rem] ">
+              <div className="hidden md:block leftPart flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center">
+                <div className="userProfile w-[2rem] md:w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+                  <FaGithubAlt className="text-white w-full h-full object-cover" />
+                </div>
+              </div>
+              <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[1rem] md:py-[2rem] rounded-[0.5rem] w-[100%] md:w-[70%]">
+                <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
+                  Activity
+                </h1>
+                <ul className="flex flex-col gap-[0.5rem] w-[90%] md:w-[80%]">
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[90%]">
+                      Active Days:
+                    </strong>
+                    <span className="text-lightBlue text-center w-[40%]">
+                      {activeDays}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[90%]">
+                      Highest Streak:
+                    </strong>
+                    <span className="text-lightBlue text-center w-[40%]">
+                      {maxStreak}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[90%]">
+                      Most Productive Date:
+                    </strong>
+                    <span className="text-lightBlue text-center w-[40%]">
+                      {mostProductiveDate}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[90%]">
+                      Most Contribution Count:
+                    </strong>
+                    <span className="text-lightBlue text-center w-[40%]">
+                      {maxContributionCount}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <h2 className="chartTitle font-secondary text-lightRed text-[1rem] vsm:text-[1.3rem] text-center uppercase">
-              Most Productive Day
-            </h2>
+          )}
+
+          {/* Top Repo  */}
+          {topReposArray.length > 2 ? (
+            <div className="activityStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ">
+              <div className="leftPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[100%] vvsm:w-[990%] md:w-[70%]">
+                <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
+                  Repositories
+                </h1>
+                <ul className="flex flex-col gap-[0.5rem] w-[90%] md:w-[80%]">
+                  {topReposArray.map((repo, index) => {
+                    return (
+                      <>
+                        <li
+                          className="flex gap-[0.5rem] md:gap-[1rem] text-[0.9rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]"
+                          key={index}
+                        >
+                          <strong className="text-lightGrey w-[90%]">
+                            {index + 1}. {`${repo.name}`}
+                          </strong>
+                          <a
+                            href={repo.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="w-[40%] vvsm:w-[20%] flex justify-center items-center"
+                          >
+                            <FaGithub className="text-darkGrey p-[0.1rem] vvsm:p-[0.2rem] vsm:p-[0.25rem] text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] md:text-[2rem] bg-lightGrey rounded-[50%] hover:text-lightGrey hover:bg-darkGrey cursor-pointer" />
+                          </a>
+                        </li>
+                      </>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="right hidden md:block flex flex-col gap-[2rem] justify-center items-center">
+                <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+                  <FaGitlab className="text-white w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {/* Popular PR  */}
+          {popularPrName == "undefined" ? (
+            <></>
+          ) : (
+            <div className="popularPrStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[1rem] md:gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ">
+              <div className="leftPart hidden md:block flex flex-col gap-[2rem] justify-center items-center">
+                <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
+                  <FaGitAlt className="text-white w-full h-full object-cover" />
+                </div>
+              </div>
+              <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[100%] md:w-[70%] md:px-[2rem]">
+                <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
+                  Top Pull Request
+                </h1>
+                <ul className="flex flex-col gap-[0.5rem] w-[90%]">
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[40%]">Title:</strong>
+                    <span className="text-lightBlue text-center w-[60%]">
+                      {popularPrName}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[40%]">State:</strong>
+                    <span className="text-lightBlue text-center w-[60%]">
+                      {popularPrState}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[40%]">
+                      Created On:
+                    </strong>
+                    <span className="text-lightBlue text-center w-[60%]">
+                      {popularPrCreationDate}
+                    </span>
+                  </li>
+                  <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
+                    <strong className="text-lightGrey w-[40%]">
+                      Repo Link:
+                    </strong>
+                    <a
+                      href={popularPrURL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-center flex justify-center items-center w-[60%]"
+                    >
+                      <HiOutlineExternalLink className="text-[1rem] md:text-[1.5rem] text-lightBlue hover:text-darkBlue cursor-pointer" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Chart & Most Productive Day Section  */}
+          <div className="piechartAndDay w-[100%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row justify-center items-center p-[1rem] gap-[2rem] md:gap-[3rem]">
+            {langButton ? (
+              <button
+                className="text-center w-[80%] md:w-[25%] lg:w-[30%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1rem] md:text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"
+                onClick={handleLangButton}
+              >
+                Get Most Used Languages
+              </button>
+            ) : (
+              <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[50%]">
+                {langArray && <LanguageChart data={langArray} />}
+                <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
+                  Most Used Languages
+                </h2>
+              </div>
+            )}
+            <div className="productiveDay flex flex-col gap-4 justify-center items-center w-[100%] md:w-[50%]">
+              <div className="productiveDayImage w-[15rem] vsm:w-[20rem] md:w-[23rem] overflow-hidden">
+                <img
+                  src={dayImage || monday}
+                  alt="mostProductiveDay"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h2 className="chartTitle font-secondary text-lightRed text-[1rem] vsm:text-[1.3rem] text-center uppercase">
+                Most Productive Day
+              </h2>
+            </div>
           </div>
-        </div>
 
-        {/* Quote of the Day  */}
-        <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center p-[1rem] py-[2rem] md:py-[3rem] md:px-[1rem] mt-[2rem] ">
-          <h1 className="sectionHeading font-secondary text-lightRed text-[1.1rem] vvsm:text-[1.3rem] vsm:text-[1.5rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
-            Quote of the Day
-          </h1>
-          <blockquote className="w-[95%] md:w-[80%] font-secondary text-[1rem] vsm:text-[1.3rem] vsm:leading-[2rem] md:text-[2rem] text-lightGrey leading-[1.7rem] md:leading-[3rem] relative">
-            {`"${quote}"`} <br />
-            <cite className="text-white text-right block font-semibold">
-              {`-${author}`}
-            </cite>
-          </blockquote>
-        </div>
+          {/* Quote of the Day  */}
+          <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center p-[1rem] py-[2rem] md:py-[3rem] md:px-[1rem] mt-[2rem] rounded-[0.625rem] relative">
+          <LuGitFork className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+          <LuGitPullRequestClosed className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
+            <h1 className="sectionHeading font-secondary text-lightRed text-[1.1rem] vvsm:text-[1.3rem] vsm:text-[1.5rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
+              Quote of the Day
+            </h1>
+            <blockquote className="w-[95%] md:w-[80%] font-secondary text-[1rem] vsm:text-[1.3rem] vsm:leading-[2rem] md:text-[2rem] text-lightGrey leading-[1.7rem] md:leading-[3rem] relative">
+              {`"${quote}"`} <br />
+              <cite className="text-white text-right block font-semibold">
+                {`-${author}`}
+              </cite>
+            </blockquote>
+          </div>
 
-        {/* Star on Github  */}
-        <a
-          href="https://github.com/singodiyashubham87/GitWrap"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button className="bg-darkGrey my-[2rem] md:my-[4rem] block text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[0.7rem] md:pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300 ">
-            {" "}
-            <FaStar className="text-lightBlue text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] inline" /> on GitHub
-          </button>
-        </a>
-      </div>
+          {/* Star on Github  */}
+          <a
+            href="https://github.com/singodiyashubham87/GitWrap"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <button className="bg-darkGrey my-[2rem] md:my-[4rem] block text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[0.7rem] md:pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300 ">
+              {" "}
+              <FaStar className="text-lightBlue text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] inline" />{" "}
+              on GitHub
+            </button>
+          </a>
+        </div>
       </div>
     </>
-
   );
 };
 
