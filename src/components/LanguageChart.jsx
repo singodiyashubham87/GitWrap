@@ -1,40 +1,49 @@
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS} from "chart.js";
+import { useEffect, useRef } from "react";
+import Chart from "chart.js/auto";
 
-function PieChart() {
-  const chartData = [
-    {
-      id: 1,
-      year: 2016,
-      userGain: 80000,
-      userLost: 823,
-    },
-    {
-      id: 2,
-      year: 2017,
-      userGain: 45677,
-      userLost: 345,
-    },
-    {
-      id: 3,
-      year: 2018,
-      userGain: 78888,
-      userLost: 555,
-    },
-    {
-      id: 4,
-      year: 2019,
-      userGain: 90000,
-      userLost: 4555,
-    },
-    {
-      id: 5,
-      year: 2020,
-      userGain: 4300,
-      userLost: 234,
-    },
-  ];
-  return <Pie data={chartData} />;
+// eslint-disable-next-line react/prop-types
+function LanguageChart({data}) {
+  const chartContainer = useRef(null);
+  const chartInstance = useRef(null);
+
+  useEffect(() => {
+    
+
+    const chartCanvas = chartContainer.current;
+
+    if (chartCanvas) {
+      // Destroy previous chart instance
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+
+      // Create a new chart instance
+      chartInstance.current = new Chart(chartCanvas, {
+        type: "pie",
+        data: {
+          // eslint-disable-next-line react/prop-types
+          labels: data.map((row) => row.name),
+          datasets: [
+            {
+              label: "Lines of Code",
+              // eslint-disable-next-line react/prop-types
+              data: data.map((row) => row.count),
+            },
+          ],
+        },
+      });
+    }
+  }, []);
+
+  return (
+    <>
+      <div className="text-center">
+        <div style={{ width: "18rem" }}>
+          <canvas id="myChart" ref={chartContainer}></canvas>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default PieChart;
+export default LanguageChart;

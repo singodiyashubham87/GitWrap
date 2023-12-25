@@ -81,18 +81,19 @@ function storeData(userData){
   const contributionsCollection = userData.contributionsCollection;
   const contributionCalendar = userData.contributionsCollection.contributionCalendar;
 
-  localStorage.setItem("totalContributions", contributionCalendar.totalContributions);
-  localStorage.setItem("openIssues", userData.openIssues.totalCount);
-  localStorage.setItem("closedIssues", userData.closedIssues.totalCount);
-  localStorage.setItem("totalIssueContributions", contributionsCollection.totalIssueContributions);  
-  localStorage.setItem("totalCommitContributions", contributionsCollection.totalCommitContributions);  
-  localStorage.setItem("totalPullRequestContributions", contributionsCollection.totalPullRequestContributions); 
-  localStorage.setItem("totalPullRequestReviewContributions", contributionsCollection.totalPullRequestReviewContributions);  
-  localStorage.setItem("totalRepositoryContributions", contributionsCollection.totalRepositoryContributions);  
-  localStorage.setItem("popularPrName", contributionsCollection.popularPullRequestContribution.pullRequest.title);  
-  localStorage.setItem("popularPrState", contributionsCollection.popularPullRequestContribution.pullRequest.state);  
-  localStorage.setItem("popularPrCreationDate", contributionsCollection.popularPullRequestContribution.pullRequest.createdAt.slice(0,10));  
-  localStorage.setItem("popularPrURL", contributionsCollection.popularPullRequestContribution.pullRequest.url); 
+  localStorage.setItem("totalContributions", contributionCalendar?.totalContributions);
+  localStorage.setItem("openIssues", userData?.openIssues?.totalCount);
+  localStorage.setItem("closedIssues", userData?.closedIssues?.totalCount);
+  localStorage.setItem("totalIssueContributions", contributionsCollection?.totalIssueContributions);
+  localStorage.setItem("totalCommitContributions", contributionsCollection?.totalCommitContributions);
+  localStorage.setItem("totalPullRequestContributions", contributionsCollection?.totalPullRequestContributions);
+  localStorage.setItem("totalPullRequestReviewContributions", contributionsCollection?.totalPullRequestReviewContributions);
+  localStorage.setItem("totalRepositoryContributions", contributionsCollection?.totalRepositoryContributions);
+  localStorage.setItem("popularPrName", contributionsCollection?.popularPullRequestContribution?.pullRequest?.title);
+  localStorage.setItem("popularPrState", contributionsCollection?.popularPullRequestContribution?.pullRequest?.state);
+  localStorage.setItem("popularPrCreationDate", contributionsCollection?.popularPullRequestContribution?.pullRequest?.createdAt?.slice(0, 10));
+  localStorage.setItem("popularPrURL", contributionsCollection?.popularPullRequestContribution?.pullRequest?.url);
+  
   
   storeTopRepos(contributionsCollection.commitContributionsByRepository);
 }

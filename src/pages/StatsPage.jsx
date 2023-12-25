@@ -2,7 +2,6 @@ import Loader from "../components/Loader";
 
 import logo from "../assets/images/logo.png";
 import avatar from "../assets/images/avatar.png";
-import chart from "../assets/images/chart.png";
 
 // Image Days Name
 import sunday from "../assets/images/sunday.png";
@@ -35,7 +34,10 @@ import { FaStar } from "react-icons/fa";
 import GithubContributionCalendar from "../components/GithubContributionCalendar";
 import getQuote from "../utils/getQuote";
 import getContributionData from "../utils/getContributionData";
+
+// Languages Chart
 import getMostUsedLanguages from "../utils/getMostUsedLanguages";
+import LanguageChart from "../components/LanguageChart";
 
 const StatsPage = () => {
   const [loader, setLoader] = useState(true);
@@ -80,8 +82,16 @@ const StatsPage = () => {
   const [dayIndex, setDayIndex] = useState(null);
   const [dayImage, setDayImage] = useState(null);
 
+  const [langButton, setLangButton] = useState(true);
   const [langArray, setLangArray] = useState([]);
-  const [languagesFetched, setLanguagesFetched] = useState(false);
+
+  const handleLangButton = async () => {
+    setLoader(true);
+    const resArray = await getMostUsedLanguages(username);
+    setLangArray(resArray);
+    setLangButton(false);
+    setLoader(false);
+  };
 
   const getDayIndex = (dateString) => {
     const date = new Date(dateString);
@@ -94,8 +104,6 @@ const StatsPage = () => {
       if (username) {
         await fetchQuote();
         await getContributionData(username);
-        const resArray = await getMostUsedLanguages(username);
-        setLangArray(resArray);
         updateState();
         setLoader(false);
       }
@@ -199,9 +207,6 @@ const StatsPage = () => {
     setMaxContributionCount(localStorage.getItem("maxContributionCount") || "");
     setMaxStreak(localStorage.getItem("maxStreak") || "");
     setActiveDays(localStorage.getItem("activeDays") || "");
-
-    //Top Languages
-    setLanguagesFetched(localStorage.getItem("languagesFetched") || "");
   }
 
   // Top Repos Array Update
@@ -265,7 +270,7 @@ const StatsPage = () => {
             </a>
           </div>
           <div className="rightPart bg-darkGrey flex flex-col justify-center items-center p-[2rem] rounded-[0.5rem]">
-            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
               User Details
             </h1>
             <ul className="flex flex-col gap-[0.5rem]">
@@ -294,7 +299,7 @@ const StatsPage = () => {
 
         {/* Contribution Graph Section  */}
         <div className="contributionGraph w-[80%] flex flex-col justify-center items-center p-[1rem] mt-[2rem]">
-          <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+          <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
             Contribution Graph
           </h1>
           <div className="contributionCalendar bg-darkGrey font-secondary px-[1rem] pb-[0.5rem] pt-[1rem] rounded-[0.625rem] leading-[2rem]">
@@ -311,7 +316,7 @@ const StatsPage = () => {
         {/* Github Summary Section */}
         {totalContributions && (
           <div className="summarySection w-[80%] flex flex-col gap-[0.5rem] justify-center items-center p-[1rem] mt-[2rem]">
-            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+            <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
               Summary
             </h1>
             <ul className="statSummary w-[100%] flex flex-col gap-[1rem] justify-center items-center">
@@ -324,7 +329,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {totalContributions}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/${username}`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -337,7 +348,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {totalRepositoryContributions}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/${username}`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -350,7 +367,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {openIssues}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aopen`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -363,7 +386,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {closedIssues}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3A${username}+is%3Aclosed`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -376,7 +405,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {totalIssueContributions}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3Asingodiyashubham87`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -389,7 +424,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {totalCommitContributions}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/${username}`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
 
@@ -402,7 +443,13 @@ const StatsPage = () => {
                   <span className="text-[1.5rem] value p-[0.3rem] bg-darkGrey px-[.5rem] rounded-[0.5rem] text-white font-semibold min-w-[5rem] text-center">
                     {totalPullRequestContributions}
                   </span>
-                  <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://github.com/pulls?q=is%3Aopen+is%3Apr+author%3A${username}`}
+                  >
+                    <HiOutlineExternalLink className="text-[1.5rem] text-lightBlue p-[0.2rem] bg-darkGrey rounded-[0.3rem] hover:text-darkBlue cursor-pointer" />
+                  </a>
                 </div>
               </li>
             </ul>
@@ -418,7 +465,7 @@ const StatsPage = () => {
               </div>
             </div>
             <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
-              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
                 Activity
               </h1>
               <ul className="flex flex-col gap-[0.5rem] w-[80%]">
@@ -463,7 +510,7 @@ const StatsPage = () => {
         {topReposArray.length > 2 ? (
           <div className="activityStats w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[2rem]">
             <div className="leftPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
-              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
                 Repositories
               </h1>
               <ul className="flex flex-col gap-[0.5rem] w-[80%]">
@@ -498,7 +545,9 @@ const StatsPage = () => {
           <></>
         )}
         {/* Popular PR  */}
-        {popularPrName && (
+        {popularPrName == "undefined" ? (
+          <></>
+        ) : (
           <div className="popularPrStats w-[80%] flex gap-[2rem] justify-evenly items-stretch p-[1rem] mt-[2rem]">
             <div className="leftPart flex flex-col gap-[2rem] justify-center items-center">
               <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
@@ -506,7 +555,7 @@ const StatsPage = () => {
               </div>
             </div>
             <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[70%]">
-              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold">
+              <h1 className="sectionHeading text-lightRed text-[3rem] font-secondary font-semibold uppercase">
                 Top Pull Request
               </h1>
               <ul className="flex flex-col gap-[0.5rem] w-[80%]">
@@ -548,31 +597,38 @@ const StatsPage = () => {
 
         {/* Chart & Most Productive Day Section  */}
         <div className="piechartAndDay w-[80%] flex justify-center items-center p-[1rem] gap-[2rem]">
-          {languagesFetched && (
-            <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[45%]">
-              <img src={chart} alt="piechart" />
+          {langButton ? (
+            <button
+              className="text-center w-[25%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"
+              onClick={handleLangButton}
+            >
+              Get Most Used Languages
+            </button>
+          ) : (
+            <div className="pieChart text-center flex flex-col gap-[1rem] justify-center items-center w-[50%]">
+              {langArray && <LanguageChart data={langArray} />}
               <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem]">
                 Most Used Languages
               </h2>
             </div>
           )}
-          <div className="productiveDay flex flex-col gap-4 justify-center items-center w-[55%]">
-            <div className="productiveDayImage w-[25rem] overflow-hidden">
+          <div className="productiveDay flex flex-col gap-4 justify-center items-center w-[50%]">
+            <div className="productiveDayImage w-[20rem] overflow-hidden">
               <img
                 src={dayImage || monday}
                 alt="mostProductiveDay"
                 className="w-full h-full object-cover"
               />
             </div>
-            <h2 className="chartTitle font-secondary text-lightRed text-[1.8rem] text-center">
-              Most Productive Date
+            <h2 className="chartTitle font-secondary text-lightRed text-[1.5rem] text-center uppercase">
+              Most Productive Day
             </h2>
           </div>
         </div>
 
         {/* Quote of the Day  */}
         <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[3rem] justify-center items-center p-[3rem] mt-[2rem]">
-          <h1 className="sectionHeading font-secondary text-lightRed text-[3rem] font-secondary font-semibold">
+          <h1 className="sectionHeading font-secondary text-lightRed text-[3rem] font-secondary font-semibold uppercase">
             Quote of the Day
           </h1>
           <blockquote className="w-[80%] font-secondary text-[2rem] text-lightGrey leading-[3.5rem] relative">
