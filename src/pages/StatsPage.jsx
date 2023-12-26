@@ -587,7 +587,7 @@ const StatsPage = () => {
                   </li>
                   <li className="flex gap-[0.5rem] md:gap-[1rem] text-[0.8rem]  vvsm:text-[1rem] vsm:text-[1.2rem] md:text-[1.5rem]">
                     <strong className="text-lightGrey w-[40%]">
-                      Repo Link:
+                      PR Link:
                     </strong>
                     <a
                       href={popularPrURL}
