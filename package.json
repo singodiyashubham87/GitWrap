@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cubejs-client/core": "^0.31.0",
+    "@cubejs-client/core": "^0.34.37",
     "chart.js": "^4.4.1",
     "octokit": "^3.1.2",
     "react": "^18.2.0",
