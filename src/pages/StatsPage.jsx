@@ -183,7 +183,7 @@ const StatsPage = () => {
       {loader && <Loader />}
       <Cursor />
       <Canvas />
-      <div className="w-[100%] lg:w-[75%] lg:pt-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative overflow-x-hidden lg:overflow-x-visible">
+      <div className="w-[100%] lg:w-[75%] lg:pt-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative overflow-x-hidden lg:overflow-x-visible overflow-y-hidden">
         <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
           {/* User Details Section  */}
           <UserDetails
