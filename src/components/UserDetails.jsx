@@ -23,7 +23,7 @@ const UserDetails = (props) => {
         </a>
       </div>
       <div className="rightPart bg-darkGrey flex flex-col justify-center items-center py-[1rem] vsm:py-[1.5rem] md:px-[2rem] rounded-[0.5rem] mt-[1rem] md:mt-[0] relative">
-        <TbChristmasTree className="text-[10rem] text-violet-200 absolute right-[-15rem] opacity-[0.2]" />
+        <TbChristmasTree className="hidden lg:block text-[10rem] text-violet-200 absolute right-[-15rem] opacity-[0.2]" />
         <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
           User Details
         </h1>

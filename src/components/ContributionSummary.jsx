@@ -23,8 +23,8 @@ const ContributionSummary = (props) => {
     <>
       {totalContributions && (
         <div className="summarySection w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col gap-[0.5rem] justify-center items-center p-[0.5rem] vsm:p-[1rem] md:py-[2rem] md:px-0 mt-[2rem] relative bg-darkGrey rounded-[0.625rem]">
-          <GiWinterHat className="text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
-          <GiWinterHat className="text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
+          <GiWinterHat className="hidden lg:block text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+          <GiWinterHat className="hidden lg:block text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
           <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
             Summary
           </h1>

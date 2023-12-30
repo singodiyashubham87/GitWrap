@@ -95,7 +95,7 @@ const Homepage = () => {
           <div className="inputContainer flex flex-col gsm:flex-row gap-[1rem] justify-center items-center gsm:items-stretch ">
             <input
               type="text"
-              className="inputBox bg-lightBlue px-[0.5rem] pl-[1rem] vvsm:px-[1rem] vvsm:pl-[1.5rem] vsm:px-[1.5rem] vsm:pl-[2rem] rounded-[5rem] text-[#505957] text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.4rem] gsm:text-[1.7rem] font-semibold outline-none"
+              className="inputBox bg-lightBlue px-[0.5rem] pl-[1rem] vvsm:px-[1rem] vvsm:pl-[1.5rem] vsm:px-[1.5rem] vsm:pl-[2rem] rounded-[5rem] text-[#505957] text-[1rem] vvsm:text-[1.2rem] vsm:text-[1.4rem] gsm:text-[1.7rem] font-primary font-semibold outline-none"
               placeholder="Enter Github Username..."
               onChange={handleInputChange}
               onKeyDown={handleSubmit}
