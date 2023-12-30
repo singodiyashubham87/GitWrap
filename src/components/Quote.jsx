@@ -4,8 +4,8 @@ import { LuGitPullRequestClosed, LuGitFork } from "react-icons/lu";
 const Quote = ({ quote, author }) => {
     return (
         <div className="quoteSection bg-darkGrey w-[100%] flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center p-[1rem] py-[2rem] md:py-[3rem] md:px-[1rem] mt-[2rem] md:rounded-[0.625rem] relative">
-        <LuGitFork className="hidden lg:block text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
-        <LuGitPullRequestClosed className="hidden lg:block text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
+        <LuGitFork className="hidden xl:block text-[8rem] text-violet-200 absolute left-[-12rem] opacity-[0.2]" />
+        <LuGitPullRequestClosed className="hidden xl:block text-[8rem] text-violet-200 absolute right-[-12rem] opacity-[0.2]" />
         <h1 className="sectionHeading font-secondary text-lightRed text-[1.1rem] vvsm:text-[1.3rem] vsm:text-[1.5rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
           Quote of the Day
         </h1>
