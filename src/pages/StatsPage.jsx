@@ -16,8 +16,6 @@ import Footer from "../components/Footer";
 
 // import icons from react-icons
 import { FaStar } from "react-icons/fa";
-// import constants 
-import { scrollClass } from "../constants/scrollClass";
 
 // import utility functions
 import getQuote from "../utils/getQuote";
@@ -249,7 +247,6 @@ const StatsPage = () => {
             href="https://github.com/singodiyashubham87/GitWrap"
             target="_blank"
             rel="noreferrer"
-            className={scrollClass}
           >
             <button className="bg-darkGrey my-[2rem] md:my-[4rem] block text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[0.7rem] md:pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300 ">
               {" "}
