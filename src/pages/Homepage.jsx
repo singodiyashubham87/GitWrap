@@ -1,24 +1,33 @@
-import logo from "../assets/images/logo.png";
-import octocatImage from "../assets/images/octocat.png";
-import { FaRegArrowAltCircleRight } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+// External libraries
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// Components
 import Modal from "../components/Modal";
-import validateGithubUsername from "../utils/validateGithubUsername";
 import Loader from "../components/Loader";
 import Canvas from "../components/Canvas";
 import Cursor from "../components/Cursor";
 
+// Images
+import logo from "../assets/images/logo.png";
+import octocatImage from "../assets/images/octocat.png";
+
+// Icons
+import { FaRegArrowAltCircleRight } from "react-icons/fa";
+
+// Utilities
+import validateGithubUsername from "../utils/validateGithubUsername";
+
 const Homepage = () => {
   const navigateTo = useNavigate(); // Navigation control
-  const [showModal, setshowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [ghUsername, setGhUsername] = useState("");
   const [loader, setLoader] = useState(false); //loader variable
 
-  // to clear localStorage data 
-  useEffect(()=>{
+  // to clear localStorage data
+  useEffect(() => {
     localStorage.clear();
-  },[])
+  }, []);
 
   // Update Github Username value when user type in the input box
   const handleInputChange = (e) => {
@@ -26,24 +35,24 @@ const Homepage = () => {
   };
 
   const handleSubmit = async (e) => {
-    if(e.type === "click"){
-        e.preventDefault();
-    }else{
-        if(e.key !== "Enter"){
-            return;
-        }
+    if (e.type === "click") {
+      e.preventDefault();
+    } else {
+      if (e.key !== "Enter") {
+        return;
+      }
     }
 
-    // if input is empty then show modal popup 
-    if(!ghUsername){
-        openModal();
-        return;
+    // if input is empty then show modal popup
+    if (!ghUsername) {
+      openModal();
+      return;
     }
 
     showLoader();
     const isValidUsername = await validateGithubUsername(ghUsername);
     if (!isValidUsername) {
-        hideLoader();
+      hideLoader();
       openModal();
     } else {
       hideLoader();
@@ -51,13 +60,13 @@ const Homepage = () => {
     }
   };
 
-    // Show & Hide Loader component
-    const showLoader = () => setLoader(true);
-    const hideLoader = () => setLoader(false);
+  // Show & Hide Loader component
+  const showLoader = () => setLoader(true);
+  const hideLoader = () => setLoader(false);
 
   // Show & Hide Model
-  const openModal = () => setshowModal(true);
-  const closeModal = () => setshowModal(false);
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   return (
     <>
@@ -69,8 +78,8 @@ const Homepage = () => {
         />
       )}
       {loader && <Loader />}
-        <Canvas/>
-        <Cursor/>
+      <Canvas />
+      <Cursor />
       <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center">
         <img
           src={logo}
