@@ -3,6 +3,18 @@
  */
 
 let TOTAL_CIRCLES = 2000;
+let width = window.innerWidth;
+if(width < 400 ){
+  TOTAL_CIRCLES = 300;
+}else if(width < 500){
+  TOTAL_CIRCLES = 500;
+}else if(width < 700){
+  TOTAL_CIRCLES = 700;
+}else if(width < 1000){
+  TOTAL_CIRCLES = 1000;
+}else{
+  TOTAL_CIRCLES = 1500;
+}
 
 export default function getCanvas() {
   // Get canvas element by ID and set its dimensions
