@@ -1,6 +1,9 @@
 /**
  * Function to set up and animate circles on a canvas.
  */
+
+let TOTAL_CIRCLES = 2000;
+
 export default function getCanvas() {
   // Get canvas element by ID and set its dimensions
   const canvas = document.getElementById("myCanvas");
@@ -12,8 +15,22 @@ export default function getCanvas() {
 
   // Event listener to adjust canvas dimensions on window resize
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    if(width < 400 ){
+      TOTAL_CIRCLES = 300;
+    }else if(width < 500){
+      TOTAL_CIRCLES = 500;
+    }else if(width < 700){
+      TOTAL_CIRCLES = 700;
+    }else if(width < 1000){
+      TOTAL_CIRCLES = 1000;
+    }else{
+      TOTAL_CIRCLES = 1500;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
     init();
   });
 
@@ -106,7 +123,7 @@ export default function getCanvas() {
    */
   function init() {
     circleArray = [];
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 0; i < TOTAL_CIRCLES; i++) {
       // Generate random parameters for each circle
       let radius = Math.floor(Math.random() * 3) + 2;
       let x = Math.random() * (window.innerWidth - 2 * radius) + radius;

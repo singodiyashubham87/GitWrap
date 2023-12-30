@@ -12,6 +12,7 @@ import TopRepos from "../components/TopRepos";
 import PopularPR from "../components/PopularPR";
 import ChartAndProductiveDay from "../components/ChartAndProductiveDay";
 import Quote from "../components/Quote";
+import Footer from "../components/Footer";
 
 // import icons from react-icons
 import { FaStar } from "react-icons/fa";
@@ -66,7 +67,6 @@ const StatsPage = () => {
     "You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one."
   );
   const [author, setAuthor] = useState("John Lennon");
-
 
   // Language-related states
   const [langButton, setLangButton] = useState(true);
@@ -183,7 +183,7 @@ const StatsPage = () => {
       {loader && <Loader />}
       <Cursor />
       <Canvas />
-      <div className="w-[100%] lg:w-[75%] lg:p-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative">
+      <div className="w-[100%] lg:w-[75%] lg:pt-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative">
         <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
           {/* User Details Section  */}
           <UserDetails
@@ -237,9 +237,8 @@ const StatsPage = () => {
             mostProductiveDate={mostProductiveDate}
           />
 
-
           {/* Quote of the Day Section  */}
-          <Quote quote={quote} author={author} />  
+          <Quote quote={quote} author={author} />
 
           {/* Star on Github  */}
           <a
@@ -247,13 +246,14 @@ const StatsPage = () => {
             target="_blank"
             rel="noreferrer"
           >
-            
             <button className="bg-darkGrey my-[2rem] md:my-[4rem] block text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[0.7rem] md:pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300 ">
               {" "}
               <FaStar className="text-lightBlue text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] inline" />{" "}
               on GitHub
             </button>
           </a>
+          {/* Footer Section  */}
+            <Footer/>
         </div>
       </div>
     </>
