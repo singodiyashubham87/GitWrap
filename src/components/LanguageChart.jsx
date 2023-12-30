@@ -7,10 +7,7 @@ function LanguageChart({data}) {
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    
-
     const chartCanvas = chartContainer.current;
-
     if (chartCanvas) {
       // Destroy previous chart instance
       if (chartInstance.current) {
@@ -33,12 +30,12 @@ function LanguageChart({data}) {
         },
       });
     }
-  }, []);
+  }, [data]);
 
   return (
     <>
       <div className="text-center">
-        <div style={{ width: "18rem" }}>
+        <div className="w-[18rem]">
           <canvas id="myChart" ref={chartContainer}></canvas>
         </div>
       </div>
