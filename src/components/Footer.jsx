@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center">
+    <footer className={`w-[100%] bg-darkGrey pt-[1rem] flex justify-center items-center`}>
       <small className="w-[80%] vsm:text-[1.2rem] gsm:text-[1.2rem] md:text-[1.5rem] text-lightGrey font-secondary leading-0 text-center">
         Designed & Developed by
         <span className="text-lightRed cursor-pointer">

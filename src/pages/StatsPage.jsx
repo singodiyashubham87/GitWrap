@@ -16,13 +16,17 @@ import Footer from "../components/Footer";
 
 // import icons from react-icons
 import { FaStar } from "react-icons/fa";
+// import constants 
+import { scrollClass } from "../constants/scrollClass";
 
 // import utility functions
 import getQuote from "../utils/getQuote";
+import getScrollAnimation from "../utils/getScrollAnimation";
 import getContributionData from "../utils/getContributionData";
 import getMostUsedLanguages from "../utils/getMostUsedLanguages";
 
 const StatsPage = () => {
+  getScrollAnimation();
   // Loading state
   const [loader, setLoader] = useState(true);
 
@@ -184,7 +188,7 @@ const StatsPage = () => {
       <Cursor />
       <Canvas />
       <div className="w-[100%] lg:w-[75%] lg:pt-[1rem] xl:w-[60%] 2xl:w-[50%] xxl:w-[40%] m-auto mmd:w-[95%] relative overflow-hidden xl:overflow-visible">
-        <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem]">
+        <div className="mainContainer min-h-[100dvh] w-[100%] relative flex flex-col justify-center items-center gap-[1rem] mt-[5rem] vvsm:mt-[8rem] gsm:mt-[10rem] md:mt-[10rem] overflow-hidden">
           {/* User Details Section  */}
           <UserDetails
             userInfo={userDetails}
@@ -245,6 +249,7 @@ const StatsPage = () => {
             href="https://github.com/singodiyashubham87/GitWrap"
             target="_blank"
             rel="noreferrer"
+            className={scrollClass}
           >
             <button className="bg-darkGrey my-[2rem] md:my-[4rem] block text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem] text-center font-secondary text-lightGrey leading-0 px-[1rem] pt-[0.7rem] md:pt-[1rem] rounded-[0.5rem] hover:scale-[1.03] ease duration-300 ">
               {" "}

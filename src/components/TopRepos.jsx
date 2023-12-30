@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { FaGithub, FaGitlab } from "react-icons/fa";
+import { scrollClass } from "../constants/scrollClass";
 
 const TopRepos = ({ topReposArray }) => {
   return (
     <>
       {topReposArray.length > 2 ? (
-        <div className="activityStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ">
+        <div className={`topRepos w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ${scrollClass}`}>
           <div className="leftPart bg-darkGrey flex flex-col justify-center items-center py-[2rem] rounded-[0.5rem] w-[100%] vvsm:w-[990%] md:w-[70%]">
             <h1 className="sectionHeading text-lightRed text-[1.2rem] vvsm:text-[1.5rem] vsm:text-[1.8rem] msm:text-[2rem] gsm:text-[2.5rem] md:text-[3rem] font-secondary font-semibold uppercase">
               Repositories

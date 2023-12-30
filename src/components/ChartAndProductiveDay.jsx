@@ -12,6 +12,7 @@ import wednesday from "../assets/images/wednesday.png";
 import thursday from "../assets/images/thursday.png";
 import friday from "../assets/images/friday.png";
 import saturday from "../assets/images/saturday.png";
+import { scrollClass } from "../constants/scrollClass";
 
 
 const ChartAndProductiveDay = (props) => {
@@ -65,7 +66,7 @@ const ChartAndProductiveDay = (props) => {
   }, [dayIndex]);
 
   return (
-    <div className="piechartAndDay w-[100%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row justify-center items-center p-[1rem] gap-[2rem] md:gap-[3rem]">
+    <div className={`piechartAndDay w-[100%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row justify-center items-center p-[1rem] gap-[2rem] md:gap-[3rem] ${scrollClass}`}>
       {langButton ? (
         <button
           className="text-center w-[80%] md:w-[25%] lg:w-[30%] px-[1rem] pt-[1rem] font-secondary text-lightGrey hover:text-darkGrey hover:bg-lightBlue text-[1rem] md:text-[1.2rem] bg-darkGrey rounded-[0.625rem] font-semibold uppercase"

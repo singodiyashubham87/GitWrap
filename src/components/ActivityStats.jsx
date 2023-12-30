@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import { FaGithubAlt } from "react-icons/fa";
+import { scrollClass } from "../constants/scrollClass";
+
 
 const ActivityStats = (props) => {
     const { activeDays, maxStreak, mostProductiveDate, maxContributionCount } = props;
   return (
-    <div className="activityStats w-[100%] vsm:w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[0.5rem] md:gap-[2rem] justify-evenly md:items-center items-stretch p-[0.5rem] md:p-[1rem] mt-[2rem] ">
+    <div className={`activityStats w-[100%] vsm:w-[95%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[0.5rem] md:gap-[2rem] justify-evenly md:items-center items-stretch p-[0.5rem] md:p-[1rem] mt-[2rem] ${scrollClass}`}>
       <div className="hidden md:block leftPart flex flex-col gap-[1rem] md:gap-[2rem] justify-center items-center">
         <div className="userProfile w-[2rem] md:w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
           <FaGithubAlt className="text-white w-full h-full object-cover" />

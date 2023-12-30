@@ -14,3 +14,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* for scroll animation  */
+.active{
+  transform: translateY(0px);
+  opacity: 1;
+}

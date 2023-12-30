@@ -1,0 +1,1 @@
+export const scrollClass = "reveal opacity-0 translate-y-[150px] transition ease duration-500";
