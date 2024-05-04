@@ -1,5 +1,5 @@
 <h1 align="center">GitWrap - GitHub Contributions Analyzer</h1>
-<div align="center"><img src="./src/assets/images/logo.png" width="200px" height="200px"/></div>
+<div align="center"><img src="./src/assets/images/logo.png" width="350px" height="200px"/></div>
 <div align="center">GitWrap is a web application that analyzes your GitHub contributions, showcasing a personalized summary of your coding journey throughout the year. Reflect, celebrate, and share your open-source achievements!</div>
 
 
