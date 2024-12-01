@@ -66,3 +66,27 @@ This project is licensed under the MIT License.
 
 ## Support
 Support the project by starring the repository.
+
+## Using Daytona to Develop GitWrap
+To make it easier for others to contribute to this project, we've integrated Daytona for a fast and consistent development environment. Follow the steps below to spin up a Daytona workspace for GitWrap:
+
+### Prerequisites
+**Daytona** must be installed on your system (follow the instructions here).
+
+## Steps to Get Started with Daytona
+
+1. Clone the repository (if not done already):
+```bash 
+git clone https://github.com/singodiyashubham87/GitWrap.git```
+cd GitWrap
+```
+
+2. Create a Daytona workspace for the project: To quickly spin up a development environment,
+use Daytona:
+```bash
+daytona create https://github.com/singodiyashubham87/GitWrap
+```
+
+3. Access the workspace: Daytona will create and start a workspace for you. Once it's running, you can access it in your browser or through VS Code using the Remote SSH feature.
+
+4. Start working: Once you're inside the Daytona workspace, you can start contributing to the project immediately by editing code, testing, and running the app within a pre-configured environment.
