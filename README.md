@@ -77,7 +77,7 @@ To make it easier for others to contribute to this project, we've integrated Day
 
 1. Clone the repository (if not done already):
 ```bash 
-git clone https://github.com/singodiyashubham87/GitWrap.git```
+git clone https://github.com/singodiyashubham87/GitWrap.git
 cd GitWrap
 ```
 
