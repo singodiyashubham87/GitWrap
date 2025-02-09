@@ -11,7 +11,7 @@ const UserDetails = (props) => {
   return (
     <div className="userDetails w-[100%] vvsm:w-[90%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row gap-[0.5rem] md:gap-[2rem] justify-evenly items-stretch p-[1rem] ">
       <div className="leftPart flex flex-col gap-[0.5rem] vsm:gap-[1rem] md:gap-[2rem] justify-center items-center">
-        <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:h-[10rem] md:w-[10rem] md:border-4 md:border-lightBlue md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
+        <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:border-4 md:border-lightBlue md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
           <img
             src={userAvatar|| avatar}
             alt="userAvatar"
@@ -43,7 +43,7 @@ const UserDetails = (props) => {
           <li className="flex gap-[1rem] text-[0.8rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]">
             <strong className="text-lightGrey">Badge:</strong>
             <span className="flex items-center gap-[0.3rem] vvsm:gap-[0.5rem] text-lightBlue">
-              {totalContributions && getBadge(totalContributions)}
+              {getBadge(totalContributions)}
               <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
             </span>
           </li>
