@@ -88,10 +88,8 @@ const StatsPage = () => {
     const fetchData = async () => {
       if (userDetails.username) {
         try {
-          await Promise.all([
-            fetchQuote(),
-            getContributionData(userDetails.username),
-          ]);
+          await fetchQuote()
+          await getContributionData(userDetails.username)
           updateState();
         } catch (error) {
           console.error("Error fetching data:", error);
