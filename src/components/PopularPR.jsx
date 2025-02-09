@@ -9,7 +9,7 @@ const PopularPR = (props) => {
     <>
       {popularPrName === "undefined" ? null : (
         <div className={`popularPrStats w-[100%] vsm:w-[85%] gsm:w-[75%] md:w-[95%] flex gap-[1rem] md:gap-[2rem] justify-evenly items-stretch md:items-center p-[0.5rem] md:p-[1rem] mt-[2rem] ${scrollClass}`}>
-          <div className="leftPart hidden md:block flex flex-col gap-[2rem] justify-center items-center">
+          <div className="leftPart hidden md:block flex-col gap-[2rem] justify-center items-center">
             <div className="userProfile w-[10rem] h-[3rem] md:w-[10rem] md:h-[10rem] overflow-hidden cursor-pointer">
               <FaGitAlt className="text-white w-full h-full object-cover" />
             </div>
