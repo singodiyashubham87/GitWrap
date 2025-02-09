@@ -11,9 +11,9 @@ const Quote = ({ quote, author }) => {
         Quote of the Day
       </h1>
       <blockquote className="w-[95%] md:w-[80%] font-secondary text-[1rem] vsm:text-[1.3rem] vsm:leading-[2rem] md:text-[2rem] text-lightGrey leading-[1.7rem] md:leading-[3rem] relative">
-        {`"${quote}"`} <br />
+        {`"${quote ?? 'Hope is a good thing my friend.'}"`} <br />
         <cite className="text-white text-right block font-semibold">
-          {`-${author}`}
+          {`-${author ?? 'Master Mickey'}`}
         </cite>
       </blockquote>
     </div>
