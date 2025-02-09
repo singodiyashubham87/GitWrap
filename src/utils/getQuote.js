@@ -1,7 +1,7 @@
 const apiKey = import.meta.env.VITE_API_NINJAS_KEY;
 
 export default async function getQuote(){
-    const requestURL = "https://api.api-ninjas.com/v1/quotes?category=inspirational"
+    const requestURL = "https://api.api-ninjas.com/v1/quotes"
     const header = {
         "X-Api-Key": apiKey,
     };
