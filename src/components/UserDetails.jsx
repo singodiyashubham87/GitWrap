@@ -5,15 +5,15 @@ import { TbChristmasTree } from "react-icons/tb";
 import getBadge from "../utils/getBadge";
 
 const UserDetails = (props) => {
-    const { userInfo, totalContributions } = props;
-    const { userAvatar, githubURL, username, followers, location } = userInfo;
+  const { userInfo, totalContributions } = props;
+  const { userAvatar, githubURL, username, followers, location } = userInfo;
 
   return (
     <div className="userDetails w-[100%] vvsm:w-[90%] msm:w-[85%] gsm:w-[75%] md:w-[95%] flex flex-col md:flex-row gap-[0.5rem] md:gap-[2rem] justify-evenly items-stretch p-[1rem] ">
       <div className="leftPart flex flex-col gap-[0.5rem] vsm:gap-[1rem] md:gap-[2rem] justify-center items-center">
         <div className="userProfile w-[5rem] h-[5rem] vsm:w-[7rem] vsm:h-[7rem] md:w-[10rem] md:border-4 md:border-lightBlue md:h-[10rem] rounded-[50%] overflow-hidden cursor-pointer ">
           <img
-            src={userAvatar|| avatar}
+            src={userAvatar || avatar}
             alt="userAvatar"
             className="w-full h-full object-cover"
           />
@@ -44,7 +44,32 @@ const UserDetails = (props) => {
             <strong className="text-lightGrey">Badge:</strong>
             <span className="flex items-center gap-[0.3rem] vvsm:gap-[0.5rem] text-lightBlue">
               {getBadge(totalContributions)}
-              <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
+              {/* <FaQuestionCircle
+                data-tooltip-target="tooltip-default"
+                className="hover:text-darkBlue cursor-pointer"
+              /> */}
+              <div className="relative group">
+                <FaQuestionCircle className="hover:text-darkBlue cursor-pointer" />
+                <span className="absolute left-1/2 top-10 -translate-x-1/2 whitespace-nowrap bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity after:content-[''] after:absolute after:left-1/2 after:-bottom-1 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-800">
+                  <span>{"Contributions > 1500 => Master"}</span>
+                  <br />
+                  <span>
+                    {"Contributions > 1000 && <= 1500 => Expert"}
+                  </span>
+                  <br />
+                  <span>
+                    {
+                      "Contributions > 500 && <= 1000 => Intermediate"
+                    }
+                  </span>
+                  <br />
+                  <span>
+                    {"Contributions > 250 && <= 500 => Skilled"}
+                  </span>
+                  <br />
+                  <span>{"Contributions <= 250 => Novice"}</span>
+                </span>
+              </div>
             </span>
           </li>
         </ul>
