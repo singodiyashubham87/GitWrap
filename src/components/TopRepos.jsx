@@ -12,7 +12,7 @@ const TopRepos = ({ topReposArray }) => {
               Repositories
             </h1>
             <ul className="flex flex-col gap-[0.5rem] w-[90%] md:w-[80%]">
-              {topReposArray.map((repo, index) => (
+              {topReposArray?.slice(0,4)?.map((repo, index) => (
                 <li
                   className="flex gap-[0.5rem] md:gap-[1rem] text-[0.9rem] vvsm:text-[1rem] vsm:text-[1.3rem] md:text-[1.5rem]"
                   key={index}
